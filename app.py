@@ -43,5 +43,6 @@ df = load_data(selected_league, selected_season)
 st.subheader("Dataframe: "+selected_league)
 st.dataframe(df)
 
+df2 = load_data(selected_colunas)
 st.subheader("Dataframe: "+selected_colunas)
 st.dataframe(df)
