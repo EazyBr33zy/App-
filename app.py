@@ -3,15 +3,15 @@ import pandas as pd
 import base64
 import numpy as np
 
-st.title('Football Data')
+st.title('Football Data App')
 #st.subheader('Data Source')
 #st.subheader('https://www.football-data.co.uk/')
 
-st.sidebar.header('Ligas')
-selected_league = st.sidebar.selectbox(['Inglaterra','Escócia','Alemanha','Itália','Espanha','França','Holanda','Bélgica','Portugal','Turquia','Grécia'])
+st.sidebar.header('Leagues')
+selected_league = st.sidebar.selectbox('League',['Inglaterra','Escócia','Alemanha','Itália','Espanha','França','Holanda','Bélgica','Portugal','Turquia','Grécia'])
 
-st.sidebar.header('Temporada')
-selected_year = st.sidebar.selectbox(['2022/2023', '2021/2022', '2020/2021',  '2019/2020',  '2018/2019', '2017/2018',  '2016/2017', '2015/2016', '2014/2015', '2013/2014', '2012/2013', '2011/2012', '2010/2011'])
+st.sidebar.header('Season')
+selected_year = st.sidebar.selectbox('Year', ['2022/2023', '2021/2022', '2020/2021',  '2019/2020',  '2018/2019', '2017/2018',  '2016/2017', '2015/2016', '2014/2015', '2013/2014', '2012/2013', '2011/2012', '2010/2011'])
 
 # Web scraping
 # https://www.football-data.co.uk/mmz4281/2223/E0.csv
@@ -67,7 +67,7 @@ def load_data(league, year):
     if selected_year == '2022/2023':
         year = '2223'
     
-     url = "https://www.football-data.co.uk/mmz4281/" + str(year) + "/" + ligas + ".csv"
+ url = "https://www.football-data.co.uk/mmz4281/" + str(year) + "/" + league + ".csv"
     data = pd.read_csv(url)
     # data = data[['Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR', 'B365H', 'B365D', 'B365A']]
     # data.columns = ['Date', 'Home', 'Away', 'Goals_H', 'Goals_A', 'Result', 'Odd_H', 'Odd_D', 'Odd_A']
@@ -80,11 +80,11 @@ df = load_data(selected_league, selected_year)
 
 # Sidebar - Columns selection
 sorted_unique_column = df.columns.to_list()
-selected_column = st.sidebar.multiselect('Colunas', sorted_unique_column, ['Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR', 'B365H', 'B365D', 'B365A'])
+selected_column = st.sidebar.multiselect('Columns', sorted_unique_column, ['Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR', 'B365H', 'B365D', 'B365A'])
 
 # Sidebar - Team selection
 sorted_unique_team = sorted(df.HomeTeam.unique())
-selected_team = st.sidebar.multiselect('Times', sorted_unique_team, sorted_unique_team)
+selected_team = st.sidebar.multiselect('Teams', sorted_unique_team, sorted_unique_team)
 
 # Filtering data
 df_filtered = df[(df.HomeTeam.isin(selected_team))]
@@ -100,5 +100,4 @@ def filedownload(df):
     return href
 
 st.markdown(filedownload(df_filtered), unsafe_allow_html=True)
-
 
