@@ -42,4 +42,4 @@ st.dataframe(df)
 
 # Sidebar - Team selection
 sorted_unique_team = sorted(df.HomeTeam.unique())
-selected_team = st.sidebar.multiselect('Time', sorted_unique_team, sorted_unique_team)
+selected_team = st.sidebar.multiselect('Times', sorted_unique_team, sorted_unique_team)
