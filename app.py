@@ -69,9 +69,9 @@ def load_data(league, year):
     
     url = "https://www.football-data.co.uk/mmz4281/" + str(year) + "/" + league + ".csv"
     data = pd.read_csv(url)
-    # data = data[['Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR', 'B365H', 'B365D', 'B365A']]
-    # data.columns = ['Date', 'Home', 'Away', 'Goals_H', 'Goals_A', 'Result', 'Odd_H', 'Odd_D', 'Odd_A']
-    # data.dropna(inplace=True)
+    data = data[['Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR', 'B365H', 'B365D', 'B365A']]
+    data.columns = ['Date', 'Home', 'Away', 'Goals_H', 'Goals_A', 'Result', 'Odd_H', 'Odd_D', 'Odd_A']
+    data.dropna(inplace=True)
     data.reset_index(inplace=True, drop=True)
     data.index = data.index.set_names(['Nº'])
     data = data.rename(index=lambda x: x + 1)
@@ -85,5 +85,20 @@ selected_column = st.sidebar.multiselect('Colunas', sorted_unique_column, ['Date
 # Sidebar - Team selection
 sorted_unique_team = sorted(df.HomeTeam.unique())
 selected_team = st.sidebar.multiselect('Times', sorted_unique_team, sorted_unique_team)
+
+# Filtering data
+df_filtered = df[(df.HomeTeam.isin(selected_team))]
+df_filtered = df_filtered[selected_column]
+
+st.subheader('DataFrame - '+selected_league)
+st.dataframe(df_filtered)
+
+def filedownload(df):
+    csv = df.to_csv(index=False)
+    b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
+    href = f'<a href="data:file/csv;base64,{b64}" download="dataframe.csv">Download CSV File</a>'
+    return href
+
+st.markdown(filedownload(df_filtered), unsafe_allow_html=True)
 
 
