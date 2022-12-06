@@ -10,9 +10,6 @@ selected_league = st.sidebar.selectbox('League',['England','Germany','Italy','Sp
 st.sidebar.header("Season")
 selected_season = st.sidebar.selectbox('Season', ['2021/2022','2020/2021','2019/2020'])
 
-st.sidebar.header("Colunas")
-selected_colunas = st.sidebar.selectbox('Colunas', ["HomeTeam" , "AwayTeam"])
-
 # WebScraping Football Data
 def load_data(league, season):
   
