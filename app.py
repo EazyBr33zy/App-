@@ -67,7 +67,7 @@ def load_data(league, year):
     if selected_year == '2022/2023':
         year = '2223'
     
-     url = "https://www.football-data.co.uk/mmz4281/" + str(year) + "/" + league + ".csv"
+     url = "https://www.football-data.co.uk/mmz4281/" + str(year) + "/" + ligas + ".csv"
     data = pd.read_csv(url)
     # data = data[['Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR', 'B365H', 'B365D', 'B365A']]
     # data.columns = ['Date', 'Home', 'Away', 'Goals_H', 'Goals_A', 'Result', 'Odd_H', 'Odd_D', 'Odd_A']
