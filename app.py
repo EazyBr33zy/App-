@@ -68,10 +68,10 @@ def load_data(league, year):
         year = '2223'
     
     url = "https://www.football-data.co.uk/mmz4281/" + str(year) + "/" + league + ".csv"
-    data = pd.read_csv(url)
-    data = data[['Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR', 'B365H', 'B365D', 'B365A']]
-    data.columns = ['Date', 'Home', 'Away', 'Goals_H', 'Goals_A', 'Result', 'Odd_H', 'Odd_D', 'Odd_A']
-    data.dropna(inplace=True)
+    #data = pd.read_csv(url)
+    #data = data[['Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR', 'B365H', 'B365D', 'B365A']]
+    #data.columns = ['Date', 'Home', 'Away', 'Goals_H', 'Goals_A', 'Result', 'Odd_H', 'Odd_D', 'Odd_A']
+    #data.dropna(inplace=True)
     data.reset_index(inplace=True, drop=True)
     data.index = data.index.set_names(['Nº'])
     data = data.rename(index=lambda x: x + 1)
