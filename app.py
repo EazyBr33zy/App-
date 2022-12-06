@@ -86,17 +86,4 @@ selected_column = st.sidebar.multiselect('Colunas', sorted_unique_column, ['Date
 sorted_unique_team = sorted(df.HomeTeam.unique())
 selected_team = st.sidebar.multiselect('Times', sorted_unique_team, sorted_unique_team)
 
-# Filtering data
-df_filtered = df[(df.HomeTeam.isin(selected_team))]
-df_filtered = df_filtered[selected_column]
 
-st.subheader('DataFrame - '+selected_league)
-st.dataframe(df_filtered)
-
-def filedownload(df):
-    csv = df.to_csv(index=False)
-    b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
-    href = f'<a href="data:file/csv;base64,{b64}" download="dataframe.csv">Download CSV File</a>'
-    return href
-
-st.markdown(filedownload(df_filtered), unsafe_allow_html=True)
