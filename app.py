@@ -8,10 +8,10 @@ st.title('Football Data')
 #st.subheader('https://www.football-data.co.uk/')
 
 st.sidebar.header('Ligas')
-selected_league = st.sidebar.selectbox('Ligas', ['Inglaterra','Escócia','Alemanha','Itália','Espanha','França','Holanda','Bélgica','Portugal','Turquia','Grécia'])
+selected_league = st.sidebar.selectbox(['Inglaterra','Escócia','Alemanha','Itália','Espanha','França','Holanda','Bélgica','Portugal','Turquia','Grécia'])
 
 st.sidebar.header('Temporada')
-selected_year = st.sidebar.selectbox('Ano', ['2022/2023', '2021/2022', '2020/2021',  '2019/2020',  '2018/2019', '2017/2018',  '2016/2017', '2015/2016', '2014/2015', '2013/2014', '2012/2013', '2011/2012', '2010/2011'])
+selected_year = st.sidebar.selectbox(['2022/2023', '2021/2022', '2020/2021',  '2019/2020',  '2018/2019', '2017/2018',  '2016/2017', '2015/2016', '2014/2015', '2013/2014', '2012/2013', '2011/2012', '2010/2011'])
 
 # Web scraping
 # https://www.football-data.co.uk/mmz4281/2223/E0.csv
@@ -67,11 +67,11 @@ def load_data(league, year):
     if selected_year == '2022/2023':
         year = '2223'
     
-    url = "https://www.football-data.co.uk/mmz4281/" + str(year) + "/" + league + ".csv"
-    #data = pd.read_csv(url)
-    #data = data[['Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR', 'B365H', 'B365D', 'B365A']]
-    #data.columns = ['Date', 'Home', 'Away', 'Goals_H', 'Goals_A', 'Result', 'Odd_H', 'Odd_D', 'Odd_A']
-    #data.dropna(inplace=True)
+     url = "https://www.football-data.co.uk/mmz4281/" + str(year) + "/" + league + ".csv"
+    data = pd.read_csv(url)
+    # data = data[['Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR', 'B365H', 'B365D', 'B365A']]
+    # data.columns = ['Date', 'Home', 'Away', 'Goals_H', 'Goals_A', 'Result', 'Odd_H', 'Odd_D', 'Odd_A']
+    # data.dropna(inplace=True)
     data.reset_index(inplace=True, drop=True)
     data.index = data.index.set_names(['Nº'])
     data = data.rename(index=lambda x: x + 1)
