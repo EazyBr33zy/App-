@@ -3,41 +3,41 @@ import pandas as pd
 import base64
 import numpy as np
 
-st.title('Football Data App')
+st.title('Football Data')
 #st.subheader('Data Source')
 #st.subheader('https://www.football-data.co.uk/')
 
-st.sidebar.header('Leagues')
-selected_league = st.sidebar.selectbox('League', ['England','Scotland','Germany','Italy','Spain','France','Netherlands','Belgium','Portugal','Turkey','Greece'])
+st.sidebar.header('Ligas')
+selected_league = st.sidebar.selectbox('Ligas', ['Inglaterra','Escócia','alemanha','Itália','Espanha','França','Holanda','Bélgica','Portugal','Turquia','Grécia'])
 
-st.sidebar.header('Season')
-selected_year = st.sidebar.selectbox('Year', ['2022/2023', '2021/2022', '2020/2021',  '2019/2020',  '2018/2019', '2017/2018',  '2016/2017', '2015/2016', '2014/2015', '2013/2014', '2012/2013', '2011/2012', '2010/2011'])
+st.sidebar.header('Temporada')
+selected_year = st.sidebar.selectbox('Ano', ['2022/2023', '2021/2022', '2020/2021',  '2019/2020',  '2018/2019', '2017/2018',  '2016/2017', '2015/2016', '2014/2015', '2013/2014', '2012/2013', '2011/2012', '2010/2011'])
 
 # Web scraping
 # https://www.football-data.co.uk/mmz4281/2223/E0.csv
 @st.cache
 def load_data(league, year):
-    if selected_league == 'England':
+    if selected_league == 'Inglaterra':
         league = 'E0'
-    if selected_league == 'Scotland':
+    if selected_league == 'Escócia':
         league = 'SC1'
-    if selected_league == 'Germany':
+    if selected_league == 'Alemanha':
         league = 'D1'
-    if selected_league == 'Italy':
+    if selected_league == 'Itália':
         league = 'I1'
-    if selected_league == 'Spain':
+    if selected_league == 'Espanha':
         league = 'SP1'
-    if selected_league == 'France':
+    if selected_league == 'França':
         league = 'F1'
-    if selected_league == 'Netherlands':
+    if selected_league == 'Holanda':
         league = 'N1'
-    if selected_league == 'Belgium':
+    if selected_league == 'Bélgica':
         league = 'B1'
     if selected_league == 'Portugal':
         league = 'P1'
-    if selected_league == 'Turkey':
+    if selected_league == 'Turquia':
         league = 'T1'
-    if selected_league == 'Greece':
+    if selected_league == 'Grécia':
         league = 'G1'
 
     if selected_year == '2010/2011':
