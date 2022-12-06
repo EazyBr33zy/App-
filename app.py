@@ -43,6 +43,6 @@ df = load_data(selected_league, selected_season)
 st.subheader("Dataframe: "+selected_league)
 st.dataframe(df)
 
-df = load_data(selected_colunas)
-st.subheader("Dataframe: "+selected_colunas)
-st.dataframe(df)
+# Sidebar - Team selection
+sorted_unique_team = sorted(df.HomeTeam.unique())
+selected_team = st.sidebar.multiselect('Teams', sorted_unique_team, sorted_unique_team)
