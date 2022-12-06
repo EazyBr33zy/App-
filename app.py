@@ -11,7 +11,7 @@ st.sidebar.header("Season")
 selected_season = st.sidebar.selectbox('Season', ['2021/2022','2020/2021','2019/2020'])
 
 st.sidebar.header("Colunas")
-selected_colunas = st.sidebar.selectbox('Colunas', ["Div", "HomeTeam" , "AwayTeam"])
+selected_colunas = st.sidebar.selectbox('Colunas', [, "HomeTeam" , "AwayTeam"])
 
 # WebScraping Football Data
 def load_data(league, season):
@@ -42,8 +42,6 @@ df = load_data(selected_league, selected_season)
 
 st.subheader("Dataframe: "+selected_league)
 st.dataframe(df)
-
-df = selected_colunas(selected_colunas)
 
 st.subheader("Dataframe: "+selected_colunas)
 st.dataframe(df)
